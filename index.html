@@ -18,9 +18,7 @@
       text-align: center;
       padding: 40px 20px;
     }
-    header {
-      margin-bottom: 60px;
-    }
+    header { margin-bottom: 60px; }
     h1 {
       font-size: 3.5rem;
       font-weight: 900;
@@ -37,7 +35,7 @@
       flex-wrap: wrap;
       gap: 30px;
       justify-content: center;
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
     }
     .card {
@@ -58,12 +56,28 @@
       font-weight: 700;
       margin: 20px 0;
     }
-    .payment-container {
-      margin: 25px 0 15px;
+
+    /* Robux Slider */
+    .robux-card .slider-container {
+      margin: 25px 0;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: #a020f0;
+    }
+    .robux-amount {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 10px 0;
+    }
+    .robux-price {
+      font-size: 1.5rem;
+      color: #a020f0;
     }
 
-    /* Кнопка ЮMoney - тёмная с фиолетовой обводкой */
-    .yoomoney-btn {
+    .payment-container { margin: 25px 0 15px; }
+
+    .yoomoney-btn, .roblox-btn, .pay-btn {
       display: block;
       width: 100%;
       padding: 16px 20px;
@@ -72,45 +86,26 @@
       color: #fff;
       font-weight: 700;
       font-size: 1.1rem;
-      border: 3px solid #a020f0;     /* Фиолетовая обводка */
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s ease;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    .yoomoney-btn:hover {
-      background: #2a2a2a;
-      border-color: #c026f0;
-      transform: scale(1.03);
-    }
+    .yoomoney-btn { border: 3px solid #a020f0; }
+    .yoomoney-btn:hover { background: #2a2a2a; border-color: #c026f0; transform: scale(1.03); }
 
-    /* Кнопка Roblox - тёмная с синей обводкой */
-    .roblox-btn {
-      display: block;
-      width: 100%;
-      padding: 16px 20px;
-      background: #1a1a1a;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border: 3px solid #00b0ff;     /* Синяя обводка */
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-family: "Arial Black", sans-serif;
-    }
-    .roblox-btn:hover {
-      background: #2a2a2a;
-      border-color: #00d0ff;
-      transform: scale(1.03);
-    }
+    .roblox-btn { border: 3px solid #00b0ff; }
+    .roblox-btn:hover { background: #2a2a2a; border-color: #00d0ff; transform: scale(1.03); }
 
-    .socials {
-      margin-top: 80px;
+    .pay-btn {
+      background: #a020f0;
+      border: 3px solid #c026f0;
+      font-size: 1.15rem;
     }
+    .pay-btn:hover { background: #c026f0; transform: scale(1.03); }
+
+    .socials { margin-top: 80px; }
     .socials a {
       display: inline-block;
       margin: 0 15px;
@@ -126,7 +121,7 @@
       font-size: 0.9rem;
     }
 
-    /* Modal */
+    /* Modals */
     .modal {
       display: none;
       position: fixed;
@@ -142,42 +137,20 @@
       border: 2px solid #fff;
       border-radius: 12px;
       width: 90%;
-      max-width: 420px;
+      max-width: 460px;
       padding: 30px;
       text-align: left;
       color: #fff;
     }
-    .modal h3 {
-      margin-bottom: 20px;
-      text-align: center;
-      font-size: 1.4rem;
-    }
-    .modal ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .modal li {
-      margin: 14px 0;
-      padding-left: 28px;
-      position: relative;
-    }
-    .modal li:before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: #00b541;
-      font-weight: bold;
-    }
-    .close-btn {
-      margin-top: 25px;
+    .modal input {
       width: 100%;
-      padding: 14px;
-      background: #fff;
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
+      padding: 12px;
+      margin: 12px 0;
+      background: #222;
+      border: 1px solid #555;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 1rem;
     }
   </style>
 </head>
@@ -185,22 +158,19 @@
 
   <header>
     <h1>SStwendRT Shop</h1>
-    <p class="subtitle">Products • Whitelist & VIP</p>
+    <p class="subtitle">Products • Whitelist & VIP • Robux</p>
   </header>
 
   <div class="products">
-    
+
     <!-- WHITELIST -->
     <div class="card">
       <h2>WHITELIST</h2>
       <div class="price">100 ₽</div>
       <p>Priority access <br>Exclusive role<br>More Scripts</p>
-      
       <div class="payment-container">
-        <!-- Кнопка ЮMoney (замени iframe на свою актуальную ссылку, если нужно) -->
         <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=1HDO6KKKD3F.260428" 
                 width="100%" height="58" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
-        
         <button onclick="showInstruction('https://www.roblox.com/game-pass/1567915760/Whitelist')" class="roblox-btn">
           BUY ON ROBLOX
         </button>
@@ -212,15 +182,26 @@
       <h2>VIP</h2>
       <div class="price">400 ₽</div>
       <p>Full Access<br>All Benefits Whitelist<br>exclusive functions<br>fast support</p>
-      
       <div class="payment-container">
         <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=1HDO6DBAA1S.260428" 
                 width="100%" height="58" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
-        
         <button onclick="showInstruction('https://www.roblox.com/game-pass/1567771885/VIP')" class="roblox-btn">
           BUY ON ROBLOX
         </button>
       </div>
+    </div>
+
+    <!-- BUY ROBUX -->
+    <div class="card robux-card">
+      <h2>BUY ROBUX</h2>
+      <div class="robux-amount" id="robuxAmount">100</div>
+      <div class="robux-price" id="robuxPrice">39.00 ₽</div>
+      
+      <div class="slider-container">
+        <input type="range" id="robuxSlider" min="100" max="1000" step="100" value="100" oninput="updateRobux()">
+      </div>
+      
+      <button onclick="buyRobux()" class="pay-btn">BUY ROBUX</button>
     </div>
 
   </div>
@@ -231,8 +212,22 @@
   </div>
 
   <footer>
-    © 2026 SStwendRT Store 
+    © 2026 SStwendRT Store
   </footer>
+
+  <!-- Modal для ввода данных Robux -->
+  <div id="robuxModal" class="modal">
+    <div class="modal-content">
+      <h3>Buy Robux</h3>
+      <p id="modalAmount" style="font-size:1.4rem; margin:15px 0; color:#a020f0;"></p>
+      
+      <input type="text" id="username" placeholder="Your Roblox Username" required>
+      <input type="text" id="placeId" placeholder="Your Place ID (Game ID)" required>
+      
+      <button onclick="confirmRobuxPayment()" class="pay-btn" style="margin-top:20px;">CONFIRM & PAY</button>
+      <button onclick="closeModal()" style="background:#555; margin-top:10px; width:100%; padding:14px; border:none; border-radius:8px; color:#fff;">Cancel</button>
+    </div>
+  </div>
 
   <!-- Modal с инструкцией -->
   <div id="instructionModal" class="modal">
@@ -243,32 +238,78 @@
         <li>After payment, take a screenshot of your Roblox code / proof of purchase</li>
       </ul>
       <p style="margin-top:20px; font-size:0.95rem; opacity:0.8;">
-        Send both screenshots to our Discord support after payment.<br>
+        Send both screenshots + your username and Place ID to our Discord support.<br>
         We will process your order as soon as possible.
       </p>
-      <button onclick="closeModalAndRedirect()" class="close-btn">I UNDERSTAND – CONTINUE TO PAYMENT</button>
+      <button onclick="closeInstructionAndPay()" class="pay-btn">I UNDERSTAND – CONTINUE TO PAYMENT</button>
     </div>
   </div>
 
   <script>
-    let currentLink = '';
+    const RATE = 0.39; // 1 Robux = 0.39 ₽
+    let currentRobux = 100;
+    let currentUsername = '';
+    let currentPlaceId = '';
 
-    function showInstruction(robloxLink) {
-      currentLink = robloxLink;
-      document.getElementById('instructionModal').style.display = 'flex';
+    function updateRobux() {
+      currentRobux = parseInt(document.getElementById('robuxSlider').value);
+      const price = (currentRobux * RATE).toFixed(2);
+      document.getElementById('robuxAmount').textContent = currentRobux;
+      document.getElementById('robuxPrice').textContent = price + ' ₽';
     }
 
-    function closeModalAndRedirect() {
-      document.getElementById('instructionModal').style.display = 'none';
-      if (currentLink) {
-        window.open(currentLink, '_blank');
+    function buyRobux() {
+      const price = (currentRobux * RATE).toFixed(2);
+      document.getElementById('modalAmount').innerHTML = 
+        `You are buying <strong>\( {currentRobux} Robux</strong><br>for <strong> \){price} ₽</strong>`;
+      document.getElementById('robuxModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('robuxModal').style.display = 'none';
+    }
+
+    function confirmRobuxPayment() {
+      currentUsername = document.getElementById('username').value.trim();
+      currentPlaceId = document.getElementById('placeId').value.trim();
+
+      if (!currentUsername || !currentPlaceId) {
+        alert("Please enter both Roblox Username and Place ID");
+        return;
+      }
+
+      closeModal();
+
+      const price = (currentRobux * RATE).toFixed(2);
+      if (confirm(`Payment of ${price} ₽ for ${currentRobux} Robux\n\nUsername: ${currentUsername}\nPlace ID: ${currentPlaceId}\n\nContinue?`)) {
+        document.getElementById('instructionModal').style.display = 'flex';
       }
     }
 
-    // Закрытие по клику вне окна
-    document.getElementById('instructionModal').addEventListener('click', function(e) {
-      if (e.target === this) this.style.display = 'none';
+    function closeInstructionAndPay() {
+      document.getElementById('instructionModal').style.display = 'none';
+      
+      const price = (currentRobux * RATE).toFixed(2);
+      
+      // Прямая ссылка на оплату ЮMoney
+      const paymentUrl = `https://yoomoney.ru/quickpay/confirm.xml?receiver=410011951312100&quickpay-form=shop&targets=Robux%20\( {currentRobux}&sum= \){price}&label=robux-\( {currentRobux}- \){Date.now()}&successURL=https://shainybottle.github.io/Sitete/thanks.html`;
+      
+      window.open(paymentUrl, '_blank');
+      
+      setTimeout(() => {
+        alert(`Payment link opened!\n\nAfter successful payment please send to Discord:\n• Payment screenshot\n• Username: ${currentUsername}\n• Place ID: ${currentPlaceId}\n• Amount: ${currentRobux} Robux`);
+      }, 800);
+    }
+
+    // Закрытие модалок по клику вне
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) this.style.display = 'none';
+      });
     });
+
+    // Инициализация
+    updateRobux();
   </script>
 
 </body>
