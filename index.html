@@ -8,7 +8,6 @@
     :root {
       --bg: #0a0a0a;
       --text: #f0f0f0;
-      --accent: #ffffff;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
@@ -60,38 +59,55 @@
       margin: 20px 0;
     }
     .payment-container {
-      margin: 20px 0;
+      margin: 25px 0 15px;
     }
+
+    /* Кнопка ЮMoney - тёмная с фиолетовой обводкой */
     .yoomoney-btn {
+      display: block;
       width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      background: #fff;
-      color: #000;
-      font-weight: 700;
-      font-size: 1.05rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .roblox-btn {
-      width: 100%;
-      padding: 14px;
-      background: #00b541; /* Roblox green */
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      background: #1a1a1a;
       color: #fff;
       font-weight: 700;
       font-size: 1.1rem;
-      border: none;
-      border-radius: 6px;
+      border: 3px solid #a020f0;     /* Фиолетовая обводка */
+      border-radius: 8px;
       cursor: pointer;
-      font-family: "Arial Black", sans-serif;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
       letter-spacing: 0.5px;
-      box-shadow: 0 4px 0 #008f33;
     }
-    .roblox-btn:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 #008f33;
+    .yoomoney-btn:hover {
+      background: #2a2a2a;
+      border-color: #c026f0;
+      transform: scale(1.03);
     }
+
+    /* Кнопка Roblox - тёмная с синей обводкой */
+    .roblox-btn {
+      display: block;
+      width: 100%;
+      padding: 16px 20px;
+      background: #1a1a1a;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: 3px solid #00b0ff;     /* Синяя обводка */
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-family: "Arial Black", sans-serif;
+    }
+    .roblox-btn:hover {
+      background: #2a2a2a;
+      border-color: #00d0ff;
+      transform: scale(1.03);
+    }
+
     .socials {
       margin-top: 80px;
     }
@@ -116,7 +132,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0,0,0,0.9);
       z-index: 1000;
       align-items: center;
       justify-content: center;
@@ -174,15 +190,16 @@
 
   <div class="products">
     
-    <!-- WHITELIST Card -->
+    <!-- WHITELIST -->
     <div class="card">
       <h2>WHITELIST</h2>
       <div class="price">100 ₽</div>
       <p>Priority access <br>Exclusive role<br>More Scripts</p>
       
       <div class="payment-container">
+        <!-- Кнопка ЮMoney (замени iframe на свою актуальную ссылку, если нужно) -->
         <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=1HDO6KKKD3F.260428" 
-                width="300" height="50" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+                width="100%" height="58" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
         
         <button onclick="showInstruction('https://www.roblox.com/game-pass/1567915760/Whitelist')" class="roblox-btn">
           BUY ON ROBLOX
@@ -190,7 +207,7 @@
       </div>
     </div>
 
-    <!-- VIP Card -->
+    <!-- VIP -->
     <div class="card">
       <h2>VIP</h2>
       <div class="price">400 ₽</div>
@@ -198,7 +215,7 @@
       
       <div class="payment-container">
         <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=1HDO6DBAA1S.260428" 
-                width="300" height="50" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+                width="100%" height="58" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
         
         <button onclick="showInstruction('https://www.roblox.com/game-pass/1567771885/VIP')" class="roblox-btn">
           BUY ON ROBLOX
@@ -214,10 +231,10 @@
   </div>
 
   <footer>
-    © 2026 SStwendRT Store 
+    © 2026 SStwendRT Store • Все права защищены
   </footer>
 
-  <!-- Modal -->
+  <!-- Modal с инструкцией -->
   <div id="instructionModal" class="modal">
     <div class="modal-content">
       <h3>Before you buy</h3>
@@ -248,11 +265,9 @@
       }
     }
 
-    // Close modal if clicked outside content
+    // Закрытие по клику вне окна
     document.getElementById('instructionModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        this.style.display = 'none';
-      }
+      if (e.target === this) this.style.display = 'none';
     });
   </script>
 
