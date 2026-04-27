@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SStwendRT Shop</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     :root {
       --bg: #0a0a0a;
@@ -57,14 +58,6 @@
       margin: 20px 0;
     }
 
-    /* Robux Slider */
-    .robux-card .slider-container {
-      margin: 25px 0;
-    }
-    input[type="range"] {
-      width: 100%;
-      accent-color: #a020f0;
-    }
     .robux-amount {
       font-size: 2rem;
       font-weight: 700;
@@ -121,7 +114,6 @@
       font-size: 0.9rem;
     }
 
-    /* Modals */
     .modal {
       display: none;
       position: fixed;
@@ -215,7 +207,7 @@
     © 2026 SStwendRT Store
   </footer>
 
-  <!-- Modal для ввода данных Robux -->
+  <!-- Modal для Robux -->
   <div id="robuxModal" class="modal">
     <div class="modal-content">
       <h3>Buy Robux</h3>
@@ -235,10 +227,10 @@
       <h3>Before you buy</h3>
       <ul>
         <li>After payment, take a screenshot of the payment confirmation</li>
-        <li>After payment, take a screenshot of your Roblox code / proof of purchase</li>
+        <li>After payment, take a screenshot of your proof of purchase</li>
       </ul>
       <p style="margin-top:20px; font-size:0.95rem; opacity:0.8;">
-        Send both screenshots + your username and Place ID to our Discord support.<br>
+        Send both screenshots to our Discord support.<br>
         We will process your order as soon as possible.
       </p>
       <button onclick="closeInstructionAndPay()" class="pay-btn">I UNDERSTAND – CONTINUE TO PAYMENT</button>
@@ -246,10 +238,17 @@
   </div>
 
   <script>
-    const RATE = 0.39; // 1 Robux = 0.39 ₽
+    const RATE = 0.39;
     let currentRobux = 100;
     let currentUsername = '';
     let currentPlaceId = '';
+
+    // ================== EmailJS ==================
+    const EMAILJS_PUBLIC_KEY = "cSMw2Ndg5y3jLT70K";
+    const EMAILJS_SERVICE_ID = "service_8mvwyjq";
+    const EMAILJS_TEMPLATE_ID = "template_c0xu1cs";
+
+    emailjs.init(EMAILJS_PUBLIC_KEY);
 
     function updateRobux() {
       currentRobux = parseInt(document.getElementById('robuxSlider').value);
@@ -277,11 +276,10 @@
         alert("Please enter both Roblox Username and Place ID");
         return;
       }
-
       closeModal();
 
       const price = (currentRobux * RATE).toFixed(2);
-      if (confirm(`Payment of ${price} ₽ for ${currentRobux} Robux\n\nUsername: ${currentUsername}\nPlace ID: ${currentPlaceId}\n\nContinue?`)) {
+      if (confirm(`Оплата ${price} ₽ за ${currentRobux} Robux\n\nUsername: ${currentUsername}\nPlace ID: ${currentPlaceId}\n\nПродолжить?`)) {
         document.getElementById('instructionModal').style.display = 'flex';
       }
     }
@@ -291,13 +289,25 @@
       
       const price = (currentRobux * RATE).toFixed(2);
       
-      // Прямая ссылка на оплату ЮMoney
-      const paymentUrl = `https://yoomoney.ru/quickpay/confirm.xml?receiver=410011951312100&quickpay-form=shop&targets=Robux%20\( {currentRobux}&sum= \){price}&label=robux-\( {currentRobux}- \){Date.now()}&successURL=https://shainybottle.github.io/Sitete/thanks.html`;
-      
+      // ЮMoney оплата
+      const paymentUrl = `https://yoomoney.ru/quickpay/confirm.xml?receiver=410011951312100&quickpay-form=shop&targets=Robux%20\( {currentRobux}&sum= \){price}&label=robux-\( {currentRobux}- \){Date.now()}`;
       window.open(paymentUrl, '_blank');
-      
+
+      // Отправка письма через EmailJS
+      const templateParams = {
+        robux_amount: currentRobux,
+        price: price,
+        username: currentUsername,
+        place_id: currentPlaceId,
+        payment_date: new Date().toLocaleString('ru-RU')
+      };
+
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(() => console.log('✅ Письмо отправлено на lvlyvcbcla@gmail.com'))
+        .catch(err => console.error('❌ Ошибка отправки:', err));
+
       setTimeout(() => {
-        alert(`Payment link opened!\n\nAfter successful payment please send to Discord:\n• Payment screenshot\n• Username: ${currentUsername}\n• Place ID: ${currentPlaceId}\n• Amount: ${currentRobux} Robux`);
+        alert(`Ссылка на оплату открыта!\n\nПосле оплаты обязательно отправь скриншот в Discord.\n\nМы получили твои данные и скоро обработаем заказ.`);
       }, 800);
     }
 
