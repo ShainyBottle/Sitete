@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SStwendRT Shop</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #f0f0f0;
+      --accent: #ffffff;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    header {
+      margin-bottom: 60px;
+    }
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      font-size: 1.3rem;
+      opacity: 0.7;
+      margin-bottom: 40px;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 12px;
+      width: 320px;
+      padding: 40px 30px;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: #fff;
+      box-shadow: 0 0 30px rgba(255,255,255,0.1);
+    }
+    .price {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin: 20px 0;
+    }
+    .buy-btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      margin: 25px 0;
+      background: #fff;
+      color: #000;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .buy-btn:hover {
+      background: #ccc;
+      transform: scale(1.03);
+    }
+    .socials {
+      margin-top: 80px;
+    }
+    .socials a {
+      display: inline-block;
+      margin: 0 15px;
+      color: #fff;
+      font-size: 1.8rem;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .socials a:hover { opacity: 0.6; }
+    footer {
+      margin-top: 100px;
+      opacity: 0.5;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SHADOW</h1>
+    <p class="subtitle">Products • Whitelist & VIP</p>
+  </header>
+
+  <div class="products">
+    
+    <!-- Карточка Whitelist -->
+    <div class="card">
+      <h2>WHITELIST</h2>
+      <div class="price">100 ₽</div>
+      <p>Priority access <br>Exclusive role<br>More Scripts</p>
+      
+      <!-- Кнопка YooMoney (замени на свой код) -->
+      <form method="POST" action="https://yoomoney.ru/quickpay/confirm.xml" target="_blank">
+        <input type="hidden" name="receiver" value="ВАШ_НОМЕР_КОШЕЛЬКА">
+        <input type="hidden" name="quickpay-form" value="shop">
+        <input type="hidden" name="targets" value="Покупка WHITELIST">
+        <input type="hidden" name="sum" value="100">
+        <input type="hidden" name="label" value="whitelist-order">
+        <input type="hidden" name="successURL" value="https://твойсайт.ru/thanks.html">
+        <button type="submit" class="buy-btn">Purchase WHITELIST</button>
+      </form>
+    </div>
+
+    <!-- Карточка VIP -->
+    <div class="card">
+      <h2>VIP</h2>
+      <div class="price">400 ₽</div>
+      <p>Full Access<br>All Benefits Whitelist<br>exclusive functions<br>fast support</p>
+      
+      <form method="POST" action="https://yoomoney.ru/quickpay/confirm.xml" target="_blank">
+        <input type="hidden" name="receiver" value="ВАШ_НОМЕР_КОШЕЛЬКА">
+        <input type="hidden" name="quickpay-form" value="shop">
+        <input type="hidden" name="targets" value="VIP Scripts">
+        <input type="hidden" name="sum" value="400">
+        <input type="hidden" name="label" value="vip-order">
+        <input type="hidden" name="successURL" value="https://твойсайт.ru/thanks.html">
+        <button type="submit" class="buy-btn">Purchase VIP</button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="socials">
+    <a href="https://discord.gg/твой_инвайт" target="_blank">Discord</a>
+    <a href="https://youtube.com/твой_канал" target="_blank">YouTube</a>
+  </div>
+
+  <footer>
+    © 2026 SStwendRT Store
+  </footer>
+
+</body>
+          </html>
