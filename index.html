@@ -6,10 +6,7 @@
   <title>SStwendRT Shop</title>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
-    :root {
-      --bg: #0a0a0a;
-      --text: #f0f0f0;
-    }
+    :root { --bg: #0a0a0a; --text: #f0f0f0; }
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
@@ -19,18 +16,9 @@
       text-align: center;
       padding: 40px 20px;
     }
-    header { margin-bottom: 60px; }
-    h1 {
-      font-size: 3.5rem;
-      font-weight: 900;
-      letter-spacing: -2px;
-      margin-bottom: 10px;
-    }
-    .subtitle {
-      font-size: 1.3rem;
-      opacity: 0.7;
-      margin-bottom: 40px;
-    }
+    h1 { font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 10px; }
+    .subtitle { font-size: 1.3rem; opacity: 0.7; margin-bottom: 50px; }
+
     .products {
       display: flex;
       flex-wrap: wrap;
@@ -45,45 +33,27 @@
       border-radius: 12px;
       width: 340px;
       padding: 40px 30px;
-      transition: all 0.3s ease;
+      transition: all 0.3s;
     }
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: #fff;
-      box-shadow: 0 0 30px rgba(255,255,255,0.1);
-    }
-    .price {
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin: 20px 0;
-    }
+    .card:hover { transform: translateY(-10px); border-color: #fff; box-shadow: 0 0 30px rgba(255,255,255,0.1); }
 
-    .robux-amount {
-      font-size: 2rem;
-      font-weight: 700;
-      margin: 10px 0;
-    }
-    .robux-price {
-      font-size: 1.5rem;
-      color: #a020f0;
-    }
+    .price { font-size: 2.8rem; font-weight: 700; margin: 20px 0; }
 
     .payment-container { margin: 25px 0 15px; }
 
-    .yoomoney-btn, .roblox-btn, .pay-btn {
+    button {
       display: block;
       width: 100%;
       padding: 16px 20px;
-      margin-bottom: 14px;
+      margin: 10px 0;
       background: #1a1a1a;
       color: #fff;
       font-weight: 700;
       font-size: 1.1rem;
       border-radius: 8px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.3s;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
     .yoomoney-btn { border: 3px solid #a020f0; }
     .yoomoney-btn:hover { background: #2a2a2a; border-color: #c026f0; transform: scale(1.03); }
@@ -91,28 +61,13 @@
     .roblox-btn { border: 3px solid #00b0ff; }
     .roblox-btn:hover { background: #2a2a2a; border-color: #00d0ff; transform: scale(1.03); }
 
-    .pay-btn {
-      background: #a020f0;
-      border: 3px solid #c026f0;
-      font-size: 1.15rem;
+    .robux-btn {
+      padding: 14px;
+      font-size: 1.05rem;
+      margin: 6px 0;
     }
-    .pay-btn:hover { background: #c026f0; transform: scale(1.03); }
-
-    .socials { margin-top: 80px; }
-    .socials a {
-      display: inline-block;
-      margin: 0 15px;
-      color: #fff;
-      font-size: 1.8rem;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .socials a:hover { opacity: 0.6; }
-    footer {
-      margin-top: 100px;
-      opacity: 0.5;
-      font-size: 0.9rem;
-    }
+    .community-btn { border: 2px solid #00b541; }
+    .no-community-btn { border: 2px solid #ff9800; }
 
     .modal {
       display: none;
@@ -131,26 +86,28 @@
       width: 90%;
       max-width: 460px;
       padding: 30px;
-      text-align: left;
       color: #fff;
     }
     .modal input {
       width: 100%;
-      padding: 12px;
-      margin: 12px 0;
+      padding: 14px;
+      margin: 15px 0;
       background: #222;
       border: 1px solid #555;
-      border-radius: 6px;
+      border-radius: 8px;
       color: #fff;
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
+    .socials { margin-top: 80px; }
+    .socials a { color: #fff; font-size: 1.8rem; margin: 0 15px; text-decoration: none; }
+    footer { margin-top: 100px; opacity: 0.5; }
   </style>
 </head>
 <body>
 
   <header>
     <h1>SStwendRT Shop</h1>
-    <p class="subtitle">Products • Whitelist & VIP • Robux</p>
+    <p class="subtitle">Whitelist • VIP • Robux</p>
   </header>
 
   <div class="products">
@@ -159,13 +116,11 @@
     <div class="card">
       <h2>WHITELIST</h2>
       <div class="price">100 ₽</div>
-      <p>Priority access <br>Exclusive role<br>More Scripts</p>
+      <p>Priority access • Exclusive role • More Scripts</p>
       <div class="payment-container">
         <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=1HDO6KKKD3F.260428" 
                 width="100%" height="58" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
-        <button onclick="showInstruction('https://www.roblox.com/game-pass/1567915760/Whitelist')" class="roblox-btn">
-          BUY ON ROBLOX
-        </button>
+        <button onclick="showPurchaseForm('whitelist')" class="yoomoney-btn">BUY WHITELIST</button>
       </div>
     </div>
 
@@ -173,27 +128,29 @@
     <div class="card">
       <h2>VIP</h2>
       <div class="price">400 ₽</div>
-      <p>Full Access<br>All Benefits Whitelist<br>exclusive functions<br>fast support</p>
+      <p>Full Access • All Benefits • Fast Support</p>
       <div class="payment-container">
         <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=1HDO6DBAA1S.260428" 
                 width="100%" height="58" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
-        <button onclick="showInstruction('https://www.roblox.com/game-pass/1567771885/VIP')" class="roblox-btn">
-          BUY ON ROBLOX
-        </button>
+        <button onclick="showPurchaseForm('vip')" class="yoomoney-btn">BUY VIP</button>
       </div>
     </div>
 
     <!-- BUY ROBUX -->
-    <div class="card robux-card">
+    <div class="card">
       <h2>BUY ROBUX</h2>
-      <div class="robux-amount" id="robuxAmount">100</div>
-      <div class="robux-price" id="robuxPrice">39.00 ₽</div>
+      <p style="margin:20px 0 15px;">Choose amount:</p>
       
-      <div class="slider-container">
-        <input type="range" id="robuxSlider" min="100" max="1000" step="100" value="100" oninput="updateRobux()">
+      <button onclick="selectRobux(100)" class="robux-btn">100 Robux</button>
+      <button onclick="selectRobux(200)" class="robux-btn">200 Robux</button>
+      <button onclick="selectRobux(400)" class="robux-btn">400 Robux</button>
+      <button onclick="selectRobux(600)" class="robux-btn">600 Robux</button>
+      <button onclick="selectRobux(900)" class="robux-btn">900 Robux</button>
+
+      <div style="margin-top:25px;">
+        <button onclick="selectCommunity(false)" class="robux-btn no-community-btn">Without Community<br><small>+30% commission • 7 days</small></button>
+        <button onclick="selectCommunity(true)" class="robux-btn community-btn">With Community<br><small>Instant • No commission</small></button>
       </div>
-      
-      <button onclick="buyRobux()" class="pay-btn">BUY ROBUX</button>
     </div>
 
   </div>
@@ -203,123 +160,102 @@
     <a href="https://youtube.com/@sstwendrt?si=-psQitPr6ykBpaA-" target="_blank">YouTube</a>
   </div>
 
-  <footer>
-    © 2026 SStwendRT Store
-  </footer>
+  <footer>© 2026 SStwendRT Store</footer>
 
-  <!-- Modal для Robux -->
-  <div id="robuxModal" class="modal">
+  <!-- Modal для ввода Username (Whitelist & VIP) -->
+  <div id="usernameModal" class="modal">
     <div class="modal-content">
-      <h3>Buy Robux</h3>
-      <p id="modalAmount" style="font-size:1.4rem; margin:15px 0; color:#a020f0;"></p>
+      <h3>Complete Your Purchase</h3>
+      <p style="margin:20px 0 10px;">Enter your Roblox Username:</p>
+      <input type="text" id="robloxUsername" placeholder="Your Roblox Username" required>
       
-      <input type="text" id="username" placeholder="Your Roblox Username" required>
-      <input type="text" id="placeId" placeholder="Your Place ID (Game ID)" required>
-      
-      <button onclick="confirmRobuxPayment()" class="pay-btn" style="margin-top:20px;">CONFIRM & PAY</button>
-      <button onclick="closeModal()" style="background:#555; margin-top:10px; width:100%; padding:14px; border:none; border-radius:8px; color:#fff;">Cancel</button>
-    </div>
-  </div>
-
-  <!-- Modal с инструкцией -->
-  <div id="instructionModal" class="modal">
-    <div class="modal-content">
-      <h3>Before you buy</h3>
-      <ul>
-        <li>After payment, take a screenshot of the payment confirmation</li>
-        <li>After payment, take a screenshot of your proof of purchase</li>
-      </ul>
-      <p style="margin-top:20px; font-size:0.95rem; opacity:0.8;">
-        Send both screenshots to our Discord support.<br>
-        We will process your order as soon as possible.
+      <p style="margin:25px 0 10px; font-size:0.95rem; line-height:1.4;">
+        After successful payment, please write in our Discord server:<br>
+        <strong>"buyed @SStwendRT"</strong>
       </p>
-      <button onclick="closeInstructionAndPay()" class="pay-btn">I UNDERSTAND – CONTINUE TO PAYMENT</button>
+      
+      <button onclick="submitPurchase()" class="yoomoney-btn" style="margin-top:15px;">SUBMIT USERNAME & NOTIFY</button>
+      <button onclick="closeModal()" style="background:#555; width:100%; padding:14px; border:none; border-radius:8px; color:#fff;">Cancel</button>
     </div>
   </div>
 
   <script>
-    const RATE = 0.39;
-    let currentRobux = 100;
-    let currentUsername = '';
-    let currentPlaceId = '';
-
-    // ================== EmailJS ==================
+    // EmailJS настройки
     const EMAILJS_PUBLIC_KEY = "cSMw2Ndg5y3jLT70K";
     const EMAILJS_SERVICE_ID = "service_8mvwyjq";
     const EMAILJS_TEMPLATE_ID = "template_c0xu1cs";
 
     emailjs.init(EMAILJS_PUBLIC_KEY);
 
-    function updateRobux() {
-      currentRobux = parseInt(document.getElementById('robuxSlider').value);
-      const price = (currentRobux * RATE).toFixed(2);
-      document.getElementById('robuxAmount').textContent = currentRobux;
-      document.getElementById('robuxPrice').textContent = price + ' ₽';
-    }
+    let currentProduct = ''; // 'whitelist' или 'vip'
+    let currentRobux = 0;
+    let isCommunity = false;
 
-    function buyRobux() {
-      const price = (currentRobux * RATE).toFixed(2);
-      document.getElementById('modalAmount').innerHTML = 
-        `You are buying <strong>\( {currentRobux} Robux</strong><br>for <strong> \){price} ₽</strong>`;
-      document.getElementById('robuxModal').style.display = 'flex';
+    // ================== WHITELIST & VIP ==================
+    function showPurchaseForm(product) {
+      currentProduct = product;
+      document.getElementById('usernameModal').style.display = 'flex';
+      document.getElementById('robloxUsername').focus();
     }
 
     function closeModal() {
-      document.getElementById('robuxModal').style.display = 'none';
+      document.getElementById('usernameModal').style.display = 'none';
     }
 
-    function confirmRobuxPayment() {
-      currentUsername = document.getElementById('username').value.trim();
-      currentPlaceId = document.getElementById('placeId').value.trim();
-
-      if (!currentUsername || !currentPlaceId) {
-        alert("Please enter both Roblox Username and Place ID");
+    function submitPurchase() {
+      const username = document.getElementById('robloxUsername').value.trim();
+      if (!username) {
+        alert("Please enter your Roblox Username");
         return;
       }
-      closeModal();
 
-      const price = (currentRobux * RATE).toFixed(2);
-      if (confirm(`Оплата ${price} ₽ за ${currentRobux} Robux\n\nUsername: ${currentUsername}\nPlace ID: ${currentPlaceId}\n\nПродолжить?`)) {
-        document.getElementById('instructionModal').style.display = 'flex';
-      }
-    }
+      const productName = currentProduct === 'whitelist' ? 'WHITELIST' : 'VIP';
 
-    function closeInstructionAndPay() {
-      document.getElementById('instructionModal').style.display = 'none';
-      
-      const price = (currentRobux * RATE).toFixed(2);
-      
-      // ЮMoney оплата
-      const paymentUrl = `https://yoomoney.ru/quickpay/confirm.xml?receiver=410011951312100&quickpay-form=shop&targets=Robux%20\( {currentRobux}&sum= \){price}&label=robux-\( {currentRobux}- \){Date.now()}`;
-      window.open(paymentUrl, '_blank');
-
-      // Отправка письма через EmailJS
+      // Отправка письма на почту
       const templateParams = {
-        robux_amount: currentRobux,
-        price: price,
-        username: currentUsername,
-        place_id: currentPlaceId,
+        robux_amount: productName,        // Используем поле для названия продукта
+        price: currentProduct === 'whitelist' ? '100' : '400',
+        username: username,
+        place_id: '—',                    // Не используется для WL/VIP
         payment_date: new Date().toLocaleString('ru-RU')
       };
 
       emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-        .then(() => console.log('✅ Письмо отправлено на lvlyvcbcla@gmail.com'))
-        .catch(err => console.error('❌ Ошибка отправки:', err));
+        .then(() => console.log(`✅ Письмо отправлено: ${productName} | ${username}`))
+        .catch(err => console.error('❌ Ошибка отправки письма:', err));
 
-      setTimeout(() => {
-        alert(`Ссылка на оплату открыта!\n\nПосле оплаты обязательно отправь скриншот в Discord.\n\nМы получили твои данные и скоро обработаем заказ.`);
-      }, 800);
+      closeModal();
+
+      alert(`Thank you, ${username}!\n\nYour ${productName} purchase has been recorded.\n\nAfter payment please write in Discord:\n"buyed @SStwendRT"`);
     }
 
-    // Закрытие модалок по клику вне
-    document.querySelectorAll('.modal').forEach(modal => {
-      modal.addEventListener('click', function(e) {
-        if (e.target === this) this.style.display = 'none';
-      });
-    });
+    // ================== ROBUX ==================
+    function selectRobux(amount) {
+      currentRobux = amount;
+      alert(`Selected: ${amount} Robux\n\nNow choose delivery method:`);
+    }
 
-    // Инициализация
-    updateRobux();
+    function selectCommunity(withCommunity) {
+      if (currentRobux === 0) {
+        alert("Please select Robux amount first!");
+        return;
+      }
+      isCommunity = withCommunity;
+
+      const commission = withCommunity ? 0 : Math.round(currentRobux * 0.3);
+      const total = currentRobux + commission;
+      const info = withCommunity ? "Instant delivery (No commission)" : `+30% commission (${commission} ₽) • 7 days wait`;
+
+      if (confirm(`Purchase ${currentRobux} Robux\nTotal: \( {total} ₽\n \){info}\n\nContinue to payment?`)) {
+        const paymentUrl = `https://yoomoney.ru/quickpay/confirm.xml?receiver=410011951312100&quickpay-form=shop&targets=Robux%20\( {currentRobux}&sum= \){total}`;
+        window.open(paymentUrl, '_blank');
+      }
+    }
+
+    // Закрытие модалки по клику вне
+    document.getElementById('usernameModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
   </script>
 
 </body>
